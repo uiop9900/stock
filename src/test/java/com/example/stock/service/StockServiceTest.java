@@ -67,5 +67,6 @@ class StockServiceTest {
         Stock stock = stockRepository.findById(1L).orElseThrow();
         // 100 개 저장 후 반복문을 통해 100 - (1 * 100) = 0 이 될 것으로 예상한다.
         Assertions.assertEquals(0L, stock.getQuantity());
+        // -> 여러개의 쓰레드가 한꺼번에 db를 조회하고 -1를 하면서 순차적으로 계산이 되지 않는다. -> 원하는 값으로 나오지 않는다.
     }
 }
