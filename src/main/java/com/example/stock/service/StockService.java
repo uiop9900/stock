@@ -20,7 +20,7 @@ public class StockService {
     //@Transactional
     // Transactional은 결과값을 바로 db에 반영하는게 아니라 commit 된 후에 db에 반영된다.
     // 그 반영되기까지 시간동안 다른 Thread가 db에 접근하게 되면 동시성 이슈가 발생한다.
-    public synchronized void decrease(Long id, Long quantity) {
+    public synchronized void decrease(Long id, Long quantity) { // synchronized는 하나의 프로세스에서만 동시성을 보장한다. 서버가 여러대면 이슈 발생.-> 거의 사용하지 않음.
         // get으로 stock을 가지고 온 다음
         // 재고 감소
         // 저장
