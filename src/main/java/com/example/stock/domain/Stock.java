@@ -31,6 +31,6 @@ public class Stock {
         if (this.quantity - quantity < 0) {
             throw new RuntimeException("재고가 - 입니다.");
         }
-        this.quantity = this.quantity - quantity;
+        this.quantity -= quantity;
     }
 }

@@ -2,6 +2,7 @@ package com.example.stock.service;
 
 import com.example.stock.domain.Stock;
 import com.example.stock.repository.StockRepository;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,19 +10,15 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Optional;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class StockServiceTest {
 
     @Autowired
-    private StockService stockService;
+    private PessimisticLockStockService stockService;
 
     @Autowired
     private StockRepository stockRepository;
@@ -66,7 +63,7 @@ class StockServiceTest {
 
         Stock stock = stockRepository.findById(1L).orElseThrow();
         // 100 개 저장 후 반복문을 통해 100 - (1 * 100) = 0 이 될 것으로 예상한다.
-        Assertions.assertEquals(0L, stock.getQuantity());
+        Assertions.assertEquals(0, stock.getQuantity());
         // -> 여러개의 쓰레드가 한꺼번에 db를 조회하고 -1를 하면서 순차적으로 계산이 되지 않는다. -> 원하는 값으로 나오지 않는다.
     }
 }
