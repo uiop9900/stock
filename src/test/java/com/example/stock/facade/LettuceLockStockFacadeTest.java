@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class LettuceLockStockFacadeTest {
 
     @Autowired
-    private LettuceLockStockFacade lettuceLockStockFacade;
+    private LettuceLockStockFacade lettuceLockStockFacade; // 기본값이라 별도의 라이브러리가 불필요
 
     @Autowired
     private StockRepository stockRepository;

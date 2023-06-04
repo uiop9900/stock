@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class RedissonLockFacade {
 
-    private RedissonClient redissonClient; // import 해서 자동으로 class가 존재한다.
+    private RedissonClient redissonClient; // 별도의 라이브러리가 필요하다.
 
     private StockService stockService;
 
