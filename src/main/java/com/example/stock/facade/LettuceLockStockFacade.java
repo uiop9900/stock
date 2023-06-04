@@ -25,7 +25,7 @@ public class LettuceLockStockFacade  {
         try {
             stockService.decrease(key, quantity);
         } finally {
-            redisLockRepository.unLock(key); // Lettuce는 스핀락 방식이라 락을 끊어줘야 한다.
+            redisLockRepository.unLock(key);
         }
     }
 
